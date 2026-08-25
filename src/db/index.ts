@@ -6,7 +6,7 @@ const connectionString =
   process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:5432/psb";
 
 // Render's managed Postgres needs SSL once deployed; local dev usually doesn't.
-const pool = new Pool({
+export const pool = new Pool({
   connectionString,
   ssl:
     process.env.NODE_ENV === "production" && process.env.DATABASE_URL
