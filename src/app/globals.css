@@ -11,20 +11,6 @@
   --line: #2a2f22;
 }
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-ink: var(--ink);
-  --color-muted: var(--muted);
-  --color-flag-red: var(--flag-red);
-  --color-pitch-green: var(--pitch-green);
-  --color-line: var(--line);
-  --font-display: var(--font-oswald);
-  --font-body: var(--font-inter);
-  --font-mono: var(--font-jetbrains);
-}
-
 * {
   box-sizing: border-box;
 }
