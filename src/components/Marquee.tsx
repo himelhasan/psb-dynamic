@@ -1,17 +1,24 @@
-export function Marquee({ text }: { text: string }) {
+export function Marquee() {
+  const items = [
+    "PSB · BANGLADESH",
+    "MATCHDAY EVERY SATURDAY",
+    "POLASHPUR PRIDE",
+    "SINCE DAY ONE",
+  ];
+
   return (
-    <div className="overflow-hidden border-y border-line bg-surface py-2.5">
-      <div className="flex w-max marquee-track">
+    <div className="border-y border-border py-5 md:py-6 overflow-hidden bg-card">
+      <div className="flex w-max marquee-track font-display text-3xl md:text-5xl tracking-wide uppercase">
         {[0, 1].map((copy) => (
           <div
             key={copy}
-            className="flex shrink-0 items-center gap-3 pr-3 font-mono text-xs font-medium tracking-widest text-muted uppercase"
+            className="flex items-center gap-8 md:gap-12 pr-8 md:pr-12 shrink-0 whitespace-nowrap"
             aria-hidden={copy === 1}
           >
-            {Array.from({ length: 6 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-3">
-                {text}
-                <span className="text-flag-red">★</span>
+            {items.map((item, i) => (
+              <span key={i} className="flex items-center gap-8 md:gap-12">
+                <span>{item}</span>
+                <span className="text-accent">★</span>
               </span>
             ))}
           </div>

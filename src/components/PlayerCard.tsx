@@ -2,37 +2,48 @@ import Image from "next/image";
 import type { Player } from "@/db/schema";
 
 export function PlayerCard({ player }: { player: Player }) {
-  return (
-    <div className="group relative overflow-hidden rounded-lg border border-line bg-surface">
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-surface-2">
-        {player.photoUrl ? (
-          <Image
-            src={player.photoUrl}
-            alt={player.name}
-            fill
-            sizes="(min-width: 1024px) 20vw, 45vw"
-            className="object-cover object-top grayscale transition-all duration-300 group-hover:grayscale-0"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center font-display text-4xl text-line">
-            {player.name.charAt(0)}
+  const isStarter = player.tier === "starter";
+
+  if (!isStarter) {
+    return (
+      <div className="bench-card group">
+        <div className="bench-card-number">
+          {player.squadNumber || "—"}
+        </div>
+        <div className="bench-card-info">
+          <div className="bench-card-position">
+            {player.position || "Player"}
           </div>
-        )}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-          <div className="flex items-baseline justify-between">
-            <span className="font-mono text-lg font-bold text-flag-red">
-              {player.squadNumber ?? "—"}
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-muted">
-              {player.position ?? ""}
-            </span>
-          </div>
+          <div className="bench-card-name">{player.name}</div>
         </div>
       </div>
-      <div className="border-t border-line px-3 py-2.5">
-        <p className="font-display text-sm font-semibold uppercase tracking-wide">
-          {player.name}
-        </p>
+    );
+  }
+
+  return (
+    <div className="player-card group">
+      {player.photoUrl ? (
+        <Image
+          src={player.photoUrl}
+          alt={player.name}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center bg-card text-muted font-display text-6xl">
+          {player.name.charAt(0)}
+        </div>
+      )}
+      <div className="player-card-number">
+        {player.squadNumber || "00"}
+      </div>
+      <div className="player-card-info">
+        <div className="player-card-position">
+          {player.position || "Squad"}
+        </div>
+        <div className="player-card-name">{player.name}</div>
       </div>
     </div>
   );
