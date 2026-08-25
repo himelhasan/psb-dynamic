@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0c0f0b;
+  --surface: #14180f;
+  --surface-2: #1b2015;
+  --ink: #f3f1e7;
+  --muted: #8d9282;
+  --flag-red: #e2372f;
+  --pitch-green: #2f8f4e;
+  --line: #2a2f22;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-flag-red: var(--flag-red);
+  --color-pitch-green: var(--pitch-green);
+  --color-line: var(--line);
+  --font-display: var(--font-oswald);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.marquee-track {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--flag-red);
+  outline-offset: 3px;
+}
