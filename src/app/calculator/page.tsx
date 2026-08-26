@@ -82,7 +82,10 @@ const DEFAULT_SQUAD_NAMES = [
   "Sajjad",
 ];
 
+export const dynamic = "force-dynamic";
+
 export default function CalculatorPage() {
+  const [mounted, setMounted] = useState<boolean>(false);
   const [slotFee, setSlotFee] = useState<number>(1400);
   const [players, setPlayers] = useState<MatchPlayer[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -117,6 +120,7 @@ export default function CalculatorPage() {
 
   // Initialize state from LocalStorage on mount
   useEffect(() => {
+    setMounted(true);
     try {
       const saved = localStorage.getItem("psb_calculator_players_v3");
       if (saved) {
@@ -146,22 +150,26 @@ export default function CalculatorPage() {
 
   // Persist to LocalStorage whenever players array structure changes
   useEffect(() => {
-    if (players.length > 0) {
-      localStorage.setItem(
-        "psb_calculator_players_v3",
-        JSON.stringify(
-          players.map((p) => ({
-            id: p.id,
-            name: p.name,
-            isGoalkeeper: p.isGoalkeeper,
-            isSohan: p.isSohan,
-            isGuest: p.isGuest,
-            minutes: p.minutes,
-          }))
-        )
-      );
+    if (mounted && players.length > 0) {
+      try {
+        localStorage.setItem(
+          "psb_calculator_players_v3",
+          JSON.stringify(
+            players.map((p) => ({
+              id: p.id,
+              name: p.name,
+              isGoalkeeper: p.isGoalkeeper,
+              isSohan: p.isSohan,
+              isGuest: p.isGuest,
+              minutes: p.minutes,
+            }))
+          )
+        );
+      } catch (err) {
+        console.error("Failed to save to localStorage:", err);
+      }
     }
-  }, [players]);
+  }, [players, mounted]);
 
   // Calculation Engine
   const calculation = useMemo(() => {

@@ -3,7 +3,7 @@ import { jwtVerify } from "jose";
 
 const COOKIE_NAME = "psb_admin_session";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   if (pathname === "/admin/login") {
