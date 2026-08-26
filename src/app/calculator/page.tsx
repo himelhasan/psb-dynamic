@@ -485,25 +485,29 @@ export default function CalculatorPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header */}
-      <header className="fixed top-0 inset-x-0 h-16 bg-background/80 backdrop-blur-md border-b border-border z-50">
+      <header className="fixed top-0 inset-x-0 h-16 bg-background/85 backdrop-blur-xl border-b border-border z-50 shadow-2xl">
         <div className="max-w-[1400px] mx-auto px-6 h-full flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/logo.png"
-              alt="PSB"
-              width={36}
-              height={36}
-              className="h-9 w-9 object-contain"
-              priority
-            />
-            <span className="font-display text-2xl tracking-widest font-bold">
-              PSB CLUB
-            </span>
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-9 w-9 overflow-hidden rounded border border-white/10 group-hover:border-flag-red transition-colors">
+              <Image
+                src="/logo.png"
+                alt="PSB"
+                fill
+                className="object-contain p-0.5"
+                priority
+              />
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="font-display text-2xl tracking-widest font-bold text-foreground group-hover:text-flag-red transition-colors">
+                PSB CLUB
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-flag-red shadow-[0_0_8px_rgba(226,55,47,0.9)]" />
+            </div>
           </Link>
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="text-xs font-bold uppercase tracking-[0.2em] border border-border px-4 py-2 rounded hover:bg-foreground hover:text-black transition"
+              className="text-xs font-bold uppercase tracking-[0.2em] border border-white/20 px-4 py-2 rounded hover:border-flag-red hover:text-flag-red hover:bg-flag-red/5 transition-all"
             >
               ← Back to Club Page
             </Link>
@@ -521,7 +525,7 @@ export default function CalculatorPage() {
               <h2 className="font-display text-2xl tracking-wide font-bold">
                 Live Summary
               </h2>
-              <span className="bg-accent-muted text-accent text-[11px] font-bold px-2 py-1 rounded uppercase tracking-wider">
+              <span className="border border-flag-red/30 bg-flag-red/10 text-flag-red text-[11px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">
                 Matchday
               </span>
             </div>
@@ -536,7 +540,7 @@ export default function CalculatorPage() {
                     onChange={(e) => setSlotFee(parseFloat(e.target.value) || 0)}
                     min={0}
                     step={50}
-                    className="w-full bg-input border border-border rounded px-3 py-1.5 text-right font-bold text-foreground focus:outline-none focus:border-accent"
+                    className="w-full bg-input border border-border rounded px-3 py-1.5 text-right font-bold text-foreground focus:outline-none focus:border-flag-red"
                   />
                   <span className="absolute right-3 text-xs font-bold text-muted pointer-events-none">
                     BDT
@@ -563,7 +567,7 @@ export default function CalculatorPage() {
               </li>
               <li className="flex justify-between items-center py-2 border-b border-white/5">
                 <span className="text-muted">Total Collected</span>
-                <span className="font-bold text-accent">
+                <span className="font-bold text-flag-red text-red-glow">
                   {calculation.totalCollected % 1 === 0
                     ? calculation.totalCollected.toFixed(0)
                     : calculation.totalCollected.toFixed(2)}{" "}
@@ -590,7 +594,7 @@ export default function CalculatorPage() {
             <div className="flex flex-col gap-2.5">
               <button
                 onClick={() => setReportModalOpen(true)}
-                className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider bg-accent text-white rounded hover:opacity-90 transition flex items-center justify-center gap-2"
+                className="w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider bg-flag-red text-white rounded hover:bg-red-600 shadow-[0_0_20px_rgba(226,55,47,0.4)] transition-all flex items-center justify-center gap-2"
               >
                 <svg
                   width="16"
@@ -872,7 +876,7 @@ export default function CalculatorPage() {
                   <button
                     key={p.name}
                     onClick={() => addPlayerFromPool(p.name)}
-                    className={`w-full text-left bg-input border border-border text-foreground px-3 py-2 rounded text-xs font-semibold hover:bg-accent-muted hover:border-accent transition flex items-center justify-between ${borderClass}`}
+                    className={`w-full text-left bg-input border border-border text-foreground px-3 py-2 rounded text-xs font-semibold hover:border-flag-red hover:bg-flag-red/10 transition flex items-center justify-between ${borderClass}`}
                   >
                     <span>+ {p.name}</span>
                     {roleBadge && (
@@ -898,11 +902,11 @@ export default function CalculatorPage() {
                 onChange={(e) => setCustomName(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addGuestPlayer()}
                 placeholder="Guest name..."
-                className="flex-1 bg-input border border-border rounded px-3 py-1.5 text-xs text-foreground focus:outline-none focus:border-accent"
+                className="flex-1 bg-input border border-border rounded px-3 py-1.5 text-xs text-foreground focus:outline-none focus:border-flag-red"
               />
               <button
                 onClick={addGuestPlayer}
-                className="bg-accent text-white px-3 py-1.5 rounded text-xs font-bold uppercase hover:opacity-90 transition"
+                className="bg-flag-red text-white px-3.5 py-1.5 rounded text-xs font-bold uppercase hover:bg-red-600 transition"
               >
                 Add
               </button>
@@ -912,7 +916,7 @@ export default function CalculatorPage() {
                 type="checkbox"
                 checked={customIsGK}
                 onChange={(e) => setCustomIsGK(e.target.checked)}
-                className="accent-accent cursor-pointer"
+                className="accent-flag-red cursor-pointer"
               />
               Mark as Goalkeeper?
             </label>
@@ -922,7 +926,7 @@ export default function CalculatorPage() {
 
       {/* Report Modal */}
       {reportModalOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+        <div className="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-6">
           <div className="bg-card border border-card-border rounded-lg max-w-xl w-full p-6 shadow-2xl flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-border pb-3">
               <h3 className="font-display text-2xl font-bold">
@@ -947,7 +951,7 @@ export default function CalculatorPage() {
                   showToast("Report copied to clipboard!");
                   setReportModalOpen(false);
                 }}
-                className="flex-1 py-2.5 px-4 bg-accent text-white rounded font-bold uppercase text-xs hover:opacity-90 transition"
+                className="flex-1 py-2.5 px-4 bg-flag-red text-white rounded font-bold uppercase text-xs hover:bg-red-600 shadow-[0_0_15px_rgba(226,55,47,0.4)] transition"
               >
                 Copy to Clipboard
               </button>
@@ -964,7 +968,7 @@ export default function CalculatorPage() {
 
       {/* Toast Notification */}
       <div
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-accent text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-wider shadow-2xl z-50 transition-all duration-300 pointer-events-none ${
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-flag-red text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-wider shadow-red-glow-lg z-50 transition-all duration-300 pointer-events-none ${
           toastVisible
             ? "translate-y-0 opacity-100"
             : "translate-y-12 opacity-0"

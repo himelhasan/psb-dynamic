@@ -23,42 +23,51 @@ export default async function Home() {
       <Nav />
 
       {/* Hero Section */}
-      <section id="top" className="relative min-h-screen flex items-end pt-16">
+      <section id="top" className="relative min-h-screen flex items-end pt-20 pb-16 md:pb-24">
+        {/* Background Image & Radial Red Atmosphere */}
         <Image
           src="/hero.jpg"
           alt="PSB Action"
           fill
           priority
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(226,55,47,0.3),transparent_70%)] pointer-events-none" />
 
-        <div className="relative max-w-[1400px] mx-auto px-6 pb-16 md:pb-24 w-full z-10">
+        <div className="relative max-w-[1400px] mx-auto px-6 w-full z-10">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-muted mb-6">
-            <span className="h-px w-10 bg-accent" />
-            Est. Polashpur · Bangladesh · 2013
+            <span className="h-0.5 w-10 bg-flag-red shadow-[0_0_10px_rgba(226,55,47,0.9)]" />
+            <span className="text-flag-red font-bold">Est. 2013</span>
+            <span>·</span>
+            <span>Polashpur · Bangladesh</span>
           </div>
-          <h1 className="font-display text-[16vw] md:text-[11vw] font-bold uppercase leading-[0.85] tracking-tight">
+
+          <h1 className="font-display text-[17vw] md:text-[12vw] font-black uppercase leading-[0.82] tracking-tight">
             POLASHPUR <br />
-            <span className="text-stroke">SOCCER</span> BOYS
+            <span className="text-stroke-red text-transparent">SOCCER</span>{" "}
+            <span className="text-foreground">BOYS</span>
           </h1>
+
           <div className="mt-8 grid md:grid-cols-3 gap-8 items-end">
-            <p className="md:col-span-2 text-lg md:text-xl text-muted max-w-2xl">
+            <p className="md:col-span-2 text-lg md:text-2xl text-muted/90 max-w-2xl font-sans leading-relaxed">
               Eleven brothers. One badge. Football the way it was meant to be
-              played — loud, local, and absolutely fearless.
+              played — <span className="text-foreground font-semibold">loud, local,</span> and{" "}
+              <span className="text-flag-red font-bold">absolutely fearless</span>.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               <a
                 href="https://wa.me/8801516150533?text=Salam!%20We%20want%20to%20challenge%20PSB%20to%20a%20match!"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-foreground text-black px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-accent hover:text-white transition"
+                className="bg-flag-red text-white px-7 py-3.5 text-xs font-bold uppercase tracking-[0.2em] rounded hover:bg-red-600 hover:shadow-[0_0_25px_rgba(226,55,47,0.5)] transition-all flex items-center gap-2"
               >
-                Challenge Us
+                <span>Challenge Us</span>
+                <span>→</span>
               </a>
               <a
                 href="#club"
-                className="border border-foreground px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-foreground hover:text-black transition"
+                className="border border-white/20 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.2em] rounded text-foreground hover:border-flag-red hover:text-flag-red hover:bg-flag-red/5 transition-all"
               >
                 Our Story
               </a>
@@ -74,17 +83,18 @@ export default async function Home() {
       <section id="club" className="max-w-[1400px] mx-auto px-6 py-24 md:py-32">
         <div className="grid md:grid-cols-12 gap-8 md:gap-16">
           <div className="md:col-span-5">
-            <div className="text-xs uppercase tracking-[0.3em] text-accent mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-flag-red/30 bg-flag-red/10 text-flag-red text-xs font-bold uppercase tracking-[0.25em] mb-5">
+              <span className="h-1.5 w-1.5 rounded-full bg-flag-red" />
               01 — The Club
             </div>
-            <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase">
+            <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase tracking-wide">
               FROM <br />
               THE STREETS <br />
-              OF <span className="text-accent">POLASHPUR</span>.
+              OF <span className="text-flag-red text-red-glow">POLASHPUR</span>.
             </h2>
           </div>
-          <div className="md:col-span-7 space-y-6 text-muted text-lg">
-            <p className="text-foreground text-xl font-medium">
+          <div className="md:col-span-7 space-y-6 text-muted text-lg leading-relaxed">
+            <p className="text-foreground text-2xl font-medium border-l-2 border-flag-red pl-4">
               PSB isn&apos;t a franchise. It&apos;s a neighbourhood that decided to
               play.
             </p>
@@ -95,9 +105,12 @@ export default async function Home() {
               and has grown into a strong and united team over the years.
             </p>
             <p>
-              Our journey began with core members: Iftekhar Azad Omi, Tahsin
-              Nakib, Himel Hasan, Sajjad Hasan Rabbi, Islam Sowad, Naimul Islam
-              Riyadh, and Sohan Ariful Islam Shusmoy.
+              Our journey began with core members:{" "}
+              <span className="text-foreground font-semibold">
+                Iftekhar Azad Omi, Tahsin Nakib, Himel Hasan, Sajjad Hasan Rabbi,
+                Islam Sowad, Naimul Islam Riyadh,
+              </span>{" "}
+              and <span className="text-foreground font-semibold">Sohan Ariful Islam Shusmoy</span>.
             </p>
             <p>
               As time passed, the team expanded with dedicated players: Tanzil,
@@ -111,27 +124,27 @@ export default async function Home() {
               consistency.
             </p>
             <div className="grid grid-cols-3 gap-4 pt-8 border-t border-border">
-              <div>
-                <div className="font-display text-5xl md:text-6xl text-foreground font-bold">
+              <div className="p-4 rounded bg-card border border-card-border hover:border-flag-red/40 transition-colors">
+                <div className="font-display text-5xl md:text-6xl text-flag-red font-black">
                   {starters.length || 11}
                 </div>
-                <div className="text-xs uppercase tracking-widest text-muted mt-1">
+                <div className="text-xs uppercase tracking-widest text-muted mt-1 font-bold">
                   Starters
                 </div>
               </div>
-              <div>
-                <div className="font-display text-5xl md:text-6xl text-foreground font-bold">
+              <div className="p-4 rounded bg-card border border-card-border hover:border-flag-red/40 transition-colors">
+                <div className="font-display text-5xl md:text-6xl text-foreground font-black">
                   {players.length || 33}
                 </div>
-                <div className="text-xs uppercase tracking-widest text-muted mt-1">
+                <div className="text-xs uppercase tracking-widest text-muted mt-1 font-bold">
                   Squad
                 </div>
               </div>
-              <div>
-                <div className="font-display text-5xl md:text-6xl text-foreground font-bold">
+              <div className="p-4 rounded bg-card border border-card-border hover:border-flag-red/40 transition-colors">
+                <div className="font-display text-5xl md:text-6xl text-white font-black">
                   1
                 </div>
-                <div className="text-xs uppercase tracking-widest text-muted mt-1">
+                <div className="text-xs uppercase tracking-widest text-muted mt-1 font-bold">
                   Family
                 </div>
               </div>
@@ -141,54 +154,67 @@ export default async function Home() {
       </section>
 
       {/* Photo Collage / Gallery Section */}
-      <section className="grid md:grid-cols-3 gap-1 bg-border">
-        <div className="relative w-full h-[50vh] md:h-[60vh]">
+      <section className="grid md:grid-cols-3 gap-1 bg-border/40">
+        <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden group">
           <Image
             src="/gallery-1.jpg"
             alt="PSB Team"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80" />
+          <div className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-[0.25em] text-white">
+            Brotherhood
+          </div>
         </div>
-        <div className="relative w-full h-[50vh] md:h-[60vh]">
+        <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden group">
           <Image
             src="/gallery-2.jpg"
             alt="PSB Action"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80" />
+          <div className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-[0.25em] text-flag-red">
+            Passion &amp; Grit
+          </div>
         </div>
-        <div className="relative w-full h-[50vh] md:h-[60vh]">
+        <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden group">
           <Image
             src="/gallery-3.jpg"
-            alt="PSB Brothers"
+            alt="PSB Matchday"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80" />
+          <div className="absolute bottom-6 left-6 text-xs font-bold uppercase tracking-[0.25em] text-white">
+            Matchday Under Lights
+          </div>
         </div>
       </section>
 
       {/* 02 — Matchday / Fixtures & Results */}
       <section id="matches" className="max-w-[1400px] mx-auto px-6 py-24 md:py-32">
         <div className="mb-12">
-          <div className="text-xs uppercase tracking-[0.3em] text-accent mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-flag-red/30 bg-flag-red/10 text-flag-red text-xs font-bold uppercase tracking-[0.25em] mb-4">
+            <span className="h-1.5 w-1.5 rounded-full bg-flag-red" />
             02 — Matchday
           </div>
-          <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase">
-            FIXTURES &amp; RESULTS
+          <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase tracking-wide">
+            FIXTURES &amp; <span className="text-flag-red">RESULTS</span>
           </h2>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2">
           <div>
             <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-pitch-green font-bold flex items-center gap-2">
-              <span className="inline-block w-2 h-2 bg-pitch-green rounded-full" />
+              <span className="inline-block w-2 h-2 bg-pitch-green rounded-full shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
               Upcoming Fixtures
             </h3>
-            <div className="rounded-lg border border-border bg-card px-4">
+            <div className="rounded-lg border border-border/80 bg-card p-4 shadow-xl">
               {upcoming.length > 0 ? (
                 upcoming.map((m) => <MatchCard key={m.id} match={m} />)
               ) : (
@@ -200,10 +226,10 @@ export default async function Home() {
           </div>
           <div>
             <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-flag-red font-bold flex items-center gap-2">
-              <span className="inline-block w-2 h-2 bg-flag-red rounded-full" />
+              <span className="inline-block w-2 h-2 bg-flag-red rounded-full shadow-[0_0_8px_rgba(226,55,47,0.8)]" />
               Recent Results
             </h3>
-            <div className="rounded-lg border border-border bg-card px-4">
+            <div className="rounded-lg border border-border/80 bg-card p-4 shadow-xl">
               {completed.length > 0 ? (
                 completed.map((m) => <MatchCard key={m.id} match={m} />)
               ) : (
@@ -217,22 +243,23 @@ export default async function Home() {
       </section>
 
       {/* 03 — Squad Section */}
-      <section id="squad" className="bg-card border-y border-border">
+      <section id="squad" className="bg-card border-y border-border/80">
         <div className="max-w-[1400px] mx-auto px-6 py-24 md:py-32">
           <div className="mb-12">
-            <div className="text-xs uppercase tracking-[0.3em] text-accent mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-flag-red/30 bg-flag-red/10 text-flag-red text-xs font-bold uppercase tracking-[0.25em] mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-flag-red" />
               03 — Squad
             </div>
-            <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase">
-              THE BROTHERS
+            <h2 className="font-display text-5xl md:text-7xl leading-none font-bold uppercase tracking-wide">
+              THE <span className="text-flag-red text-red-glow">BROTHERS</span>
             </h2>
           </div>
 
           {/* Starting XI */}
           {starters.length > 0 && (
             <div className="mb-16">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-accent/80 font-bold mb-6 flex items-center gap-2">
-                <span className="inline-block w-2 h-2 bg-accent rounded-full" />
+              <h3 className="text-xs uppercase tracking-[0.25em] text-flag-red font-bold mb-6 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-flag-red rounded-full shadow-[0_0_8px_rgba(226,55,47,0.9)]" />
                 Starting Lineup
               </h3>
               <div className="player-grid">
@@ -246,8 +273,8 @@ export default async function Home() {
           {/* Reserves & Bench */}
           {bench.length > 0 && (
             <div>
-              <h3 className="text-xs uppercase tracking-[0.2em] text-muted/80 font-bold mb-6 flex items-center gap-2">
-                <span className="inline-block w-2 h-2 bg-muted/50 rounded-full" />
+              <h3 className="text-xs uppercase tracking-[0.25em] text-muted font-bold mb-6 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 bg-muted/60 rounded-full" />
                 Reserves &amp; Bench
               </h3>
               <div className="bench-grid">
@@ -272,35 +299,38 @@ export default async function Home() {
           src="/gallery-3.jpg"
           alt="Contact Background"
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-20 mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-background/80" />
+        <div className="absolute inset-0 bg-background/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(226,55,47,0.25),transparent_70%)] pointer-events-none" />
 
         <div className="relative max-w-[1400px] mx-auto px-6 z-10">
-          <div className="text-xs uppercase tracking-[0.3em] text-accent mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-flag-red/30 bg-flag-red/10 text-flag-red text-xs font-bold uppercase tracking-[0.25em] mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-flag-red" />
             04 — Join Us
           </div>
-          <h2 className="font-display text-6xl md:text-9xl leading-[0.9] font-bold uppercase">
+          <h2 className="font-display text-6xl md:text-9xl leading-[0.88] font-black uppercase tracking-tight">
             WEAR <br />
-            THE <span className="text-accent">BADGE</span>.
+            THE <span className="text-flag-red text-red-glow">BADGE</span>.
           </h2>
-          <p className="text-muted max-w-xl mx-auto mt-8 text-lg">
-            Trials, training, supporter chants — everything happens on our page.
+          <p className="text-muted/90 max-w-xl mx-auto mt-8 text-lg font-sans leading-relaxed">
+            Trials, training, supporter chants — everything happens on our official page.
             Come say salam.
           </p>
           <a
             href="https://www.facebook.com/psb.bd"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 mt-10 bg-foreground text-black px-8 py-4 font-bold uppercase tracking-widest hover:bg-accent hover:text-white transition"
+            className="inline-flex items-center gap-3 mt-10 bg-flag-red text-white px-9 py-4 font-bold uppercase tracking-widest rounded hover:bg-red-600 hover:shadow-red-glow-lg transition-all"
           >
-            facebook.com/psb.bd <span>→</span>
+            <span>facebook.com/psb.bd</span>
+            <span>→</span>
           </a>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border">
+      <footer className="border-t border-border bg-background/90">
         <div className="max-w-[1400px] mx-auto px-6 py-12 flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Image
@@ -311,9 +341,11 @@ export default async function Home() {
               className="h-10 w-10 object-contain"
             />
             <div>
-              <div className="font-display text-lg tracking-widest font-bold">PSB</div>
+              <div className="font-display text-xl tracking-widest font-bold text-foreground">
+                PSB
+              </div>
               <div className="text-xs uppercase tracking-widest text-muted">
-                Polashpur Soccer Boys
+                Polashpur Soccer Boys · Bangladesh
               </div>
             </div>
           </div>
